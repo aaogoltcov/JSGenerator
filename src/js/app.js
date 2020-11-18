@@ -15,9 +15,12 @@ let array = [
     new Undead('Nick'),
 ]
 
-let person = (new Team(array)).getPerson()
-console.log(person.next().value);
-console.log(person.next().value);
-console.log(person.next().value);
-console.log(person.next().value);
-console.log(person.next().value);
+let team = (new Team());
+console.log(team);
+team.add(array);
+console.log(team);
+console.log(team.get())
+for (const person of team) {
+    console.log(person);
+}
+console.log(team[Symbol.iterator]().next().value)

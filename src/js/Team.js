@@ -1,16 +1,20 @@
 'use strict';
 
 export default class Team {
-    constructor(array) {
-        this.array = array;
-        this.iterator = this.array[Symbol.iterator]();
+    constructor() {
+        this.members = new Set();
     }
 
-    *getPerson() {
-        while (true) {
-            let result = this.iterator.next();
-            if (result.done) break;
-            yield result.value;
-        }
+    add(...characters) {
+        this.members = new Set([...this.members, ...characters]);
     }
+
+    get() {
+        return Array.from(this.members);
+    }
+
+    * [Symbol.iterator]() {
+        yield* this.get();
+    }
+
 }
